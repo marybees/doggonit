@@ -1,11 +1,10 @@
 import React from 'react';
-// import { Switch, Route, Redirect } from 'react-router-dom';
-import { Button } from 'reactstrap';
+import Navigation from './Navigation'
 
 function App() {
   return (
     <div>
-      <Button>Doggonit!</Button>
+      <Navigation />
     </div>
   );
 }
