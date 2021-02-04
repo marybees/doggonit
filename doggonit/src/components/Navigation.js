@@ -16,13 +16,13 @@ const Navigation = (props) => {
                 <NavLink href="/home">Random Dogs</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="">Alphabetically Ordered Dogs</NavLink>
+                <NavLink href="/alphabet">Alphabetically Ordered Dogs</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="">Dog Breed Search</NavLink>
+                <NavLink href="/breed">Dog Breed Search</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="">Dog Sub-Breed Search</NavLink>
+                <NavLink href="/subbreed">Dog Sub-Breed Search</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
