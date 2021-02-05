@@ -13,10 +13,10 @@ const Navigation = (props) => {
           <Collapse isOpen={!collapsed} navbar>
             <Nav navbar>
               <NavItem>
-                <NavLink href="/home">Random Dogs</NavLink>
+                <NavLink href="/">Dogs on Things</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/alphabet">Alphabetically Ordered Dogs</NavLink>
+                <NavLink href="/alphabet">Dog Breeds by Letter</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/breed">Dog Breed Search</NavLink>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Spinner, Button, ButtonGroup, List, ListInlineItem, Jumbotron } from 'reactstrap';
+import { Spinner, Button, ButtonGroup, List, ListInlineItem, Jumbotron, Alert } from 'reactstrap';
 
 const Alphabet = (props) => {
     const [activeLetter, setActiveLetter] = useState();
@@ -28,7 +27,7 @@ const Alphabet = (props) => {
 
     if(breeds.length === 0) {
         dogBreedArray = (
-            <div>There are no dog breeds that start with {activeLetter}.</div>
+            <Alert color="warning">Doggonit! There are no dog breeds that start with {activeLetter}.</Alert>
         )
     }
 
@@ -39,7 +38,7 @@ const Alphabet = (props) => {
                 <p className="lead">View a list of dog breeds that begin with the selected letter.</p>
                 <ButtonGroup>{linkedLetterList}</ButtonGroup>
             </Jumbotron>
-            <List>{dogBreedArray}</List>
+            <List style={{ padding: "0 1rem" }}>{dogBreedArray}</List>
         </div>
     );
 };
