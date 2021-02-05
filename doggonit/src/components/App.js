@@ -26,22 +26,34 @@ const App = () => {
     });
     }, []);
 
+    useEffect(() => {
+      axios
+      .get('https://dog.ceo/api/breed/{search}/images/random/20')
+      .then(function (response) {
+          console.log("Random dog image response:", response.data.message);
+          setDogImages(response.data.message)
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+      }, []);
+
   return (
     <Router>
       <div>
         <Navigation />
         <Switch>
-          <Route path="/subbreed/:title">
+          <Route path="/subbreed">
             <SubBreed />
           </Route>
-          <Route path="/breed/:title">
+          <Route path="/breed">
             <Breed />
           </Route>
-          <Route path="/alphabet/:title">
+          <Route path="/alphabet">
             <Alphabet />
           </Route>
           <Route exact path="/">
-            <DogList dogImages={dogImages}/>
+            <DogList dogImages={dogImages} setDogImages={setDogImages}/>
           </Route>
         </Switch>
       </div>
