@@ -13,13 +13,14 @@ import SubBreed from './SubBreed';
 
 const App = () => {
   const [dogImages, setDogImages] = useState([]);
+  const [dogBreeds, setDogBreeds] = useState([]);
 
   useEffect(() => {
     axios
-    .get('https://dog.ceo/api/breeds/image/random/20')
+    .get("https://dog.ceo/api/breeds/image/random/20")
     .then(function (response) {
         console.log("Random dog image response:", response.data.message);
-        setDogImages(response.data.message)
+        setDogImages(response.data.message);
     })
     .catch(function (error) {
         console.log(error);
@@ -28,10 +29,10 @@ const App = () => {
 
     useEffect(() => {
       axios
-      .get('https://dog.ceo/api/breed/{search}/images/random/20')
+      .get("https://dog.ceo/api/breeds/list/all")
       .then(function (response) {
-          console.log("Random dog image response:", response.data.message);
-          setDogImages(response.data.message)
+          console.log("List of dog breeds:", response.data.message);
+          setDogBreeds(response.data.message);
       })
       .catch(function (error) {
           console.log(error);
@@ -50,7 +51,7 @@ const App = () => {
             <Breed />
           </Route>
           <Route path="/alphabet">
-            <Alphabet />
+            <Alphabet dogBreeds={dogBreeds} setDogBreeds={setDogBreeds}/>
           </Route>
           <Route exact path="/">
             <DogList dogImages={dogImages} setDogImages={setDogImages}/>
