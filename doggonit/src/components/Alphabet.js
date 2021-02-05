@@ -1,8 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import { Spinner, Button, ButtonGroup, List, ListInlineItem, Jumbotron, Alert } from 'reactstrap';
 
 const Alphabet = (props) => {
     const [activeLetter, setActiveLetter] = useState();
+    const [dogBreedImages, setDogBreedImages] = useState([]);
+
+    useEffect(() => {
+        axios
+        .get("https://dog.ceo/api/breed/" + dogBreedName + "/images/random/5")
+        .then(function (response) {
+            console.log("5 random dog pics by breed:", response.data.message);
+            setDogBreedImages(response.data.message);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }, []);
+
     const alphabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
 
     const linkedLetterList = alphabet.map((letter) =>
@@ -27,9 +42,11 @@ const Alphabet = (props) => {
 
     if(breeds.length === 0) {
         dogBreedArray = (
-            <Alert color="warning">Doggonit! There are no dog breeds that start with {activeLetter}.</Alert>
+            <Alert color="warning"><span style ={{ fontWeight: "bold" }}>Doggonit!</span> There are no dog breeds that start with the letter {activeLetter}.</Alert>
         )
     }
+
+    let dogBreedName = "hound";
 
     return (
         <div>
