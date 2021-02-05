@@ -1,10 +1,25 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 import { Spinner, Button, ButtonGroup, List, ListInlineItem, Jumbotron, Alert } from 'reactstrap';
+import DogBreedCard from "./DogBreedCard";
 
 const Alphabet = (props) => {
     const [activeLetter, setActiveLetter] = useState();
     const [dogBreedImages, setDogBreedImages] = useState([]);
+
+    const alphabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
+    let breeds = Object.keys(props.dogBreeds);
+    let dogBreedName = "";
+
+    const linkedLetterList = alphabet.map((letter) =>
+        <Button onClick={()=>{setActiveLetter(letter); setDogBreedImages([])}}>{letter}</Button>
+    );
+
+    if (activeLetter) {
+        breeds = breeds.filter(dogBreed => dogBreed[0].toUpperCase() === activeLetter);
+        dogBreedName = breeds[0];
+        console.log("breed image url at index 0:", breeds[0]);
+    }
 
     useEffect(() => {
         axios
@@ -16,15 +31,7 @@ const Alphabet = (props) => {
         .catch(function (error) {
             console.log(error);
         });
-    }, []);
-
-    const alphabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
-
-    const linkedLetterList = alphabet.map((letter) =>
-        <Button onClick={()=>{setActiveLetter(letter)}}>{letter}</Button>
-    );
-
-    let breeds = Object.keys(props.dogBreeds);
+    }, [dogBreedName]);
 
     if(!props.dogBreeds) {
         return(
@@ -32,9 +39,9 @@ const Alphabet = (props) => {
         );
     };
 
-    if (activeLetter) {
-        breeds = breeds.filter(dogBreed => dogBreed[0].toUpperCase() === activeLetter);
-    }
+    let dogPicByBreed = dogBreedImages.map((dogPicURL) => {
+        return <DogBreedCard url={dogPicURL} />
+    })
 
     let dogBreedArray = breeds.map((dogBreed) => {
         return <ListInlineItem>{dogBreed}</ListInlineItem>;
@@ -46,8 +53,6 @@ const Alphabet = (props) => {
         )
     }
 
-    let dogBreedName = "hound";
-
     return (
         <div>
             <Jumbotron>
@@ -55,7 +60,10 @@ const Alphabet = (props) => {
                 <p className="lead">View a list of dog breeds that begin with the selected letter.</p>
                 <ButtonGroup>{linkedLetterList}</ButtonGroup>
             </Jumbotron>
-            <List style={{ padding: "0 1rem" }}>{dogBreedArray}</List>
+            <List style={{ padding: "0 3rem" }}>{dogBreedArray}</List>
+            <div className="dog-images-container">
+                {dogPicByBreed}
+            </div>
         </div>
     );
 };
