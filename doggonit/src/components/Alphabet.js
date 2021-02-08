@@ -20,8 +20,8 @@ const Alphabet = (props) => {
 
     if (activeLetter) {
         breeds = breeds.filter(dogBreed => dogBreed[0].toUpperCase() === activeLetter);
-        dogBreedName = breeds[getRandomInt(breeds.length - 1)];
-        console.log("breed image url at index 0:", breeds[0]);
+        dogBreedName = breeds[getRandomInt(breeds.length - 1)]
+        console.log("breeds image url list:", breeds);
     }
 
     useEffect(() => {

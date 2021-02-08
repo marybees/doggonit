@@ -8,8 +8,8 @@ import axios from 'axios';
 import Navigation from './Navigation';
 import DogList from './DogList';
 import Alphabet from './Alphabet';
-import Breed from './Breed';
-import SubBreed from './SubBreed';
+import BreedsList from './BreedsList';
+import SubBreedsList from './SubBreedsList';
 
 const App = () => {
   const [dogImages, setDogImages] = useState([]);
@@ -45,10 +45,10 @@ const App = () => {
         <Navigation />
         <Switch>
           <Route path="/subbreed">
-            <SubBreed />
+            <SubBreedsList />
           </Route>
           <Route path="/breed">
-            <Breed />
+            <BreedsList dogBreeds={dogBreeds} setDogBreeds={setDogBreeds}/>
           </Route>
           <Route path="/alphabet">
             <Alphabet dogBreeds={dogBreeds} setDogBreeds={setDogBreeds}/>
