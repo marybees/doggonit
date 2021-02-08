@@ -10,18 +10,23 @@ const BreedsList = ( { dogBreeds } ) => {
     const filteredBreeds = dogBreedsArr.filter(dogBreed => {
         return dogBreed.toLowerCase().includes(search.toLowerCase());
     });
-
-    console.log("filteredBreeds", filteredBreeds)
-
-    return (
-        <div>
-            <input type="text" placeholder="Search for a breed" onChange={ e => setSearch(e.target.value)}/>
-            {filteredBreeds.map((dogBreed) => {
-                return <Link><ul>{dogBreed}</ul></Link>
-            })}
-        </div>
-    )
-
+    if (filteredBreeds.length > 0) {
+        return (
+            <div>
+                <input type="text" placeholder="Search for a breed" onChange={ e => setSearch(e.target.value)}/>
+                {filteredBreeds.map((dogBreed) => {
+                    return <Link><ul>{dogBreed}</ul></Link>
+                })}
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <input type="text" placeholder="Search for a breed" onChange={ e => setSearch(e.target.value)}/>
+                <Alert color="warning"><span style ={{ fontWeight: "bold" }}>Doggonit!</span> We can't find the dog breed you're looking for.</Alert>
+            </div>
+        )
+    }
 };
 
 export default BreedsList;
