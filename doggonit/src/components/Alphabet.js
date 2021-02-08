@@ -10,6 +10,9 @@ const Alphabet = (props) => {
     const alphabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
     let breeds = Object.keys(props.dogBreeds);
     let dogBreedName = "";
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
 
     const linkedLetterList = alphabet.map((letter) =>
         <Button onClick={()=>{setActiveLetter(letter); setDogBreedImages([])}}>{letter}</Button>
@@ -17,7 +20,7 @@ const Alphabet = (props) => {
 
     if (activeLetter) {
         breeds = breeds.filter(dogBreed => dogBreed[0].toUpperCase() === activeLetter);
-        dogBreedName = breeds[0];
+        dogBreedName = breeds[getRandomInt(breeds.length - 1)];
         console.log("breed image url at index 0:", breeds[0]);
     }
 
