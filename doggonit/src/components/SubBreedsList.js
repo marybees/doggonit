@@ -74,7 +74,7 @@ const SubBreedsList = ( { dogBreeds } ) => {
                 <p className="lead">Search for your favorite dog sub-breed.</p>
                 <hr className="my-2" />
                 <p>Select a dog breed below to see what they look like!</p>
-                <Input type="text" placeholder="Search for a breed" onChange={(e) => {handleOnChange(e, e.target.value)}}/>
+                <Input type="text" placeholder="Search for a sub-breed" onChange={(e) => {handleOnChange(e, e.target.value)}}/>
                 <p className="lead">
                 </p>
             </Jumbotron>
