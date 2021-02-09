@@ -37,7 +37,7 @@ const Alphabet = (props) => {
 
     useEffect(() => {
         axios
-        .get("https://dog.ceo/api/breed/" + dogBreedName + "/images/random/5")
+        .get("https://dog.ceo/api/breed/" + dogBreedName + "/images/random/20")
         .then(function (response) {
             setDogBreedImages(response.data.message);
         })

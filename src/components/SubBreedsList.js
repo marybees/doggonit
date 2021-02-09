@@ -52,7 +52,7 @@ const SubBreedsList = ( { dogBreeds } ) => {
 
     useEffect(() => {
         axios
-        .get("https://dog.ceo/api/breed/" + dogBreedName.breed + "/" + dogBreedName.subBreed + "/images/random/5")
+        .get("https://dog.ceo/api/breed/" + dogBreedName.breed + "/" + dogBreedName.subBreed + "/images/random/20")
         .then(function (response) {
             setDogBreedImages(response.data.message);
         })
