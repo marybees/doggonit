@@ -28,7 +28,7 @@ const DogList = (props) => {
           <h1 className="display-3">Dogs on things</h1>
           <p className="lead">Get your daily fix of adorable dogs on things. Dogs on the carpet, dogs on the grass, even dogs on the table!</p>
           <hr className="my-2" />
-          <p>Click the button below to see more to see more.</p>
+          <p>Click the button below to see more.</p>
           <p className="lead">
             <Button color="primary" onClick={(e)=> {handleOnClick(e)}}>
               More Dogs Please!
