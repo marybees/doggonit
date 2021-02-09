@@ -9,7 +9,23 @@ const SubBreedsList = ( { dogBreeds } ) => {
     const [dogBreedImages, setDogBreedImages] = useState([]);
     const [dogBreedName, setDogBreedName] = useState("");
 
+    console.log("dogBreeds:", dogBreeds);
+
     const dogBreedsArr = Object.keys(dogBreeds);
+
+    const newBreedList = [];
+
+    dogBreedsArr.forEach((dogBreed) => {
+        let subBreeds = dogBreeds[dogBreed];
+
+        subBreeds.forEach((subBreed) => {
+            newBreedList.push({
+                breed:dogBreed,
+                subBreed:subBreed
+            })
+        });
+    })
+    console.log("newBreedList:", newBreedList)
 
     const filteredBreeds = dogBreedsArr.filter(dogBreed => {
         return dogBreed.toLowerCase().includes(search.toLowerCase());
