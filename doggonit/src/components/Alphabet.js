@@ -59,7 +59,7 @@ const Alphabet = (props) => {
     return (
         <div>
             <Jumbotron>
-                <h1 className="display-3">Dog Breeds on things <span>by letter</span></h1>
+                <h1 className="display-3">Dog breeds on things <span>by letter</span></h1>
                 <p className="lead">View a list of dog breeds that begin with the selected letter.</p>
                 <ButtonGroup>{linkedLetterList}</ButtonGroup>
             </Jumbotron>
