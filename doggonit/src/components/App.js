@@ -45,7 +45,7 @@ const App = () => {
         <Navigation />
         <Switch>
           <Route path="/subbreed">
-            <SubBreedsList />
+            <SubBreedsList dogBreeds={dogBreeds} setDogBreeds={setDogBreeds} />
           </Route>
           <Route path="/breed">
             <BreedsList dogBreeds={dogBreeds} setDogBreeds={setDogBreeds}/>

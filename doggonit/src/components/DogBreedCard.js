@@ -9,7 +9,7 @@ const DogBreedCard = (props) => {
     return (
         <div>
             <Card className="dog-image-card">
-                <CardImg style={{ width: "200px", height: "200px" }} src={props.url} alt="dog by breed"/>
+                <CardImg style={{ width: "200px", height: "200px" }} src={props.url} alt="dog"/>
             </Card>
         </div>
     );

@@ -8,7 +8,7 @@ const DogCard = (props) => {
     return (
       <div>
         <Card className="dog-image-card">
-          <CardImg style={{ width: "200px", height: "200px" }} src={props.url} alt="random dog"/>
+          <CardImg style={{ width: "200px", height: "200px" }} src={props.url} alt="dog"/>
         </Card>
       </div>
     );

@@ -25,3 +25,11 @@ body {
 .dog-list-container {
   padding: 0 3rem;
 }
+
+.display-3 span {
+  color: blue;
+}
+
+.nav-link span {
+  color: blue;
+}
