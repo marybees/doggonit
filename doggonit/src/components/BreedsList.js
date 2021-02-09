@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Input, Alert, List, Jumbotron, Button } from "reactstrap";
+import { Input, Alert, List, Jumbotron } from "reactstrap";
 import DogBreedCard from "./DogBreedCard";
 
 const BreedsList = ( { dogBreeds } ) => {
     const [search, setSearch] = useState("");
     const [dogBreedImages, setDogBreedImages] = useState([]);
+    const [dogBreedName, setDogBreedName] = useState("");
 
     const dogBreedsArr = Object.keys(dogBreeds);
 
@@ -18,8 +19,19 @@ const BreedsList = ( { dogBreeds } ) => {
         return <DogBreedCard url={dogPicURL} />
     })
 
-    let dogBreedName = "";
     let alertBar;
+
+    let handleOnClick = (e, dogBreed) => {
+        e.preventDefault();
+        setDogBreedName(dogBreed);
+    }
+
+    let handleOnChange = (e, inputValue) => {
+        e.preventDefault();
+        setSearch(inputValue);
+        setDogBreedName("");
+        setDogBreedImages([]);
+    }
 
     useEffect(() => {
         axios
@@ -46,13 +58,13 @@ const BreedsList = ( { dogBreeds } ) => {
                 <p className="lead">Search for your favorite dog breed.</p>
                 <hr className="my-2" />
                 <p>Select a dog breed below to see what they look like!</p>
-                <Input type="text" placeholder="Search for a breed" onChange={ e => setSearch(e.target.value)}/>
+                <Input type="text" placeholder="Search for a breed" onChange={(e) => {handleOnChange(e, e.target.value)}}/>
                 <p className="lead">
                 </p>
             </Jumbotron>
             <div className="dog-list-container">
                 {filteredBreeds.map((dogBreed) => {
-                    return <Link onClick={(e) => e.preventDefault(), dogBreedName = dogBreed}><List style={{padding: "0"}}>{dogBreed}</List></Link>
+                    return <Link onClick={(e)=> {handleOnClick(e, dogBreed)}}><List style={{padding: "0"}}>{dogBreed}</List></Link>
                 })}
             { alertBar }
             </div>
