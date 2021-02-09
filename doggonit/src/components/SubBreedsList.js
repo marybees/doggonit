@@ -63,7 +63,7 @@ const SubBreedsList = ( { dogBreeds } ) => {
 
     if(!filteredBreeds.length) {
         alertBar = (
-            <Alert color="warning"><span style ={{ fontWeight: "bold" }}>Doggonit!</span> We can't find that dog breed.</Alert>
+            <Alert color="warning"><span style ={{ fontWeight: "bold" }}>Doggonit!</span> We can't find that dog sub-breed.</Alert>
         )
     }
 
