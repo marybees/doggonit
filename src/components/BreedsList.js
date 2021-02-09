@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Input, Alert, List, Jumbotron } from "reactstrap";
-import DogBreedCard from "./DogBreedCard";
+import DogCard from "./DogCard";
 
 const BreedsList = ( { dogBreeds } ) => {
     const [search, setSearch] = useState("");
@@ -16,7 +16,7 @@ const BreedsList = ( { dogBreeds } ) => {
     });
 
     let dogPicByBreed = dogBreedImages.map((dogPicURL) => {
-        return <DogBreedCard url={dogPicURL} />
+        return <DogCard url={dogPicURL} />
     })
 
     let alertBar;

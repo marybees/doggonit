@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Spinner, Button, ButtonGroup, List, ListInlineItem, Jumbotron, Alert } from 'reactstrap';
-import DogBreedCard from "./DogBreedCard";
+import DogCard from "./DogCard";
 
 const Alphabet = (props) => {
     const [activeLetter, setActiveLetter] = useState();
@@ -43,7 +43,7 @@ const Alphabet = (props) => {
     };
 
     let dogPicByBreed = dogBreedImages.map((dogPicURL) => {
-        return <DogBreedCard url={dogPicURL} />
+        return <DogCard url={dogPicURL} />
     })
 
     let dogBreedArray = breeds.map((dogBreed) => {

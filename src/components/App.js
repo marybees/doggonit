@@ -50,7 +50,7 @@ const App = () => {
           <Route path="/breed">
             <BreedsList dogBreeds={dogBreeds} setDogBreeds={setDogBreeds}/>
           </Route>
-          <Route path="/alphabet">
+          <Route path="/alphabetized">
             <Alphabet dogBreeds={dogBreeds} setDogBreeds={setDogBreeds}/>
           </Route>
           <Route exact path="/">

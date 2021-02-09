@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Input, Alert, List, Jumbotron } from "reactstrap";
-import DogBreedCard from "./DogBreedCard";
+import DogCard from "./DogCard";
 
 const SubBreedsList = ( { dogBreeds } ) => {
     const [search, setSearch] = useState("");
@@ -22,21 +22,14 @@ const SubBreedsList = ( { dogBreeds } ) => {
             })
         });
     });
-    console.log("newBreedList:", newBreedList)
-
-    //map through newBreedList and render as linked list on screen
-    //handle change should work since it is .includes e.target.value/inputValue
-    //initialize dogBreedName state to empty object
 
     const filteredBreeds = newBreedList.filter(dogBreedObj => {
         let fullBreedName = dogBreedObj.breed + " " + dogBreedObj.subBreed
         return fullBreedName.toLowerCase().includes(search.toLowerCase());
     });
 
-    console.log({filteredBreeds});
-
     let dogPicByBreed = dogBreedImages.map((dogPicURL) => {
-        return <DogBreedCard url={dogPicURL} />
+        return <DogCard url={dogPicURL} />
     })
 
     let alertBar;

@@ -16,7 +16,7 @@ const Navigation = (props) => {
                 <NavLink className="nav-link" href="/">Dogs on things</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className="nav-link" href="/alphabet">Dog breeds on things <span>by letter</span></NavLink>
+                <NavLink className="nav-link" href="/alphabetized">Dog breeds on things <span>by letter</span></NavLink>
               </NavItem>
               <NavItem>
                 <NavLink className="nav-link" href="/breed">Dogs on things <span>by breed</span></NavLink>
