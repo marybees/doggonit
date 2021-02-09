@@ -19,6 +19,7 @@ const BreedsList = ( { dogBreeds } ) => {
     })
 
     let dogBreedName = "";
+    let alertBar;
 
     useEffect(() => {
         axios
@@ -30,7 +31,13 @@ const BreedsList = ( { dogBreeds } ) => {
         .catch(function (error) {
             console.log(error);
         });
-    }, [dogBreedName]);
+    }, [dogBreedName, alertBar]);
+
+    if(!filteredBreeds.length) {
+        alertBar = (
+            <Alert color="warning"><span style ={{ fontWeight: "bold" }}>Doggonit!</span> We can't find that dog breed.</Alert>
+        )
+    }
 
     return (
         <div>
@@ -47,7 +54,7 @@ const BreedsList = ( { dogBreeds } ) => {
                 {filteredBreeds.map((dogBreed) => {
                     return <Link onClick={(e) => e.preventDefault(), dogBreedName = dogBreed}><List style={{padding: "0"}}>{dogBreed}</List></Link>
                 })}
-                <Alert color="warning"><span style ={{ fontWeight: "bold" }}>Doggonit!</span> We can't find that dog breed.</Alert>
+            { alertBar }
             </div>
             <div className="dog-images-container">
                 {dogPicByBreed}

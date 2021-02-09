@@ -9,6 +9,8 @@ const SubBreedsList = ( { dogBreeds } ) => {
     const [dogBreedImages, setDogBreedImages] = useState([]);
 
     const dogBreedsArr = Object.keys(dogBreeds);
+    const dogSubBreedsArr = Object.values (dogBreeds)
+    console.log("dog sub breeds array:", dogSubBreedsArr);
 
     const filteredBreeds = dogBreedsArr.filter(dogBreed => {
         return dogBreed.toLowerCase().includes(search.toLowerCase());
@@ -19,26 +21,27 @@ const SubBreedsList = ( { dogBreeds } ) => {
     })
 
     let dogBreedName = "";
+    let dogSubBreedName = "";
 
-    useEffect(() => {
-        axios
-        .get("https://dog.ceo/api/breed/" + dogBreedName + "/images/random/5")
-        .then(function (response) {
-            console.log("5 random dog pics by breed:", response.data.message);
-            setDogBreedImages(response.data.message);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-    }, [dogBreedName]);
+    // useEffect(() => {
+    //     axios
+    //     .get("https://dog.ceo/api/breed/" + dogBreedName + dogSubBreedName + "/images/random/5")
+    //     .then(function (response) {
+    //         console.log("5 random dog pics by breed:", response.data.message);
+    //         setDogBreedImages(response.data.message);
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
+    // }, [dogBreedName]);
 
     return (
         <div>
             <Jumbotron className="jumbotron">
                 <h1 className="display-3">Dogs on things <span>by sub-breed</span></h1>
-                <p className="lead">Search for your favorite dog breed.</p>
+                <p className="lead">Search for your favorite dog sub-breed.</p>
                 <hr className="my-2" />
-                <p>Select a dog breed below to see what they look like!</p>
+                <p>Select a dog sub-breed below to see what they look like!</p>
                 <Input type="text" placeholder="Search for a breed" onChange={ e => setSearch(e.target.value)}/>
                 <p className="lead">
                 </p>
