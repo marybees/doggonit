@@ -7,9 +7,7 @@ import DogBreedCard from "./DogBreedCard";
 const SubBreedsList = ( { dogBreeds } ) => {
     const [search, setSearch] = useState("");
     const [dogBreedImages, setDogBreedImages] = useState([]);
-    const [dogBreedName, setDogBreedName] = useState("");
-
-    console.log("dogBreeds:", dogBreeds);
+    const [dogBreedName, setDogBreedName] = useState({});
 
     const dogBreedsArr = Object.keys(dogBreeds);
 
@@ -17,19 +15,25 @@ const SubBreedsList = ( { dogBreeds } ) => {
 
     dogBreedsArr.forEach((dogBreed) => {
         let subBreeds = dogBreeds[dogBreed];
-
         subBreeds.forEach((subBreed) => {
             newBreedList.push({
                 breed:dogBreed,
                 subBreed:subBreed
             })
         });
-    })
+    });
     console.log("newBreedList:", newBreedList)
 
-    const filteredBreeds = dogBreedsArr.filter(dogBreed => {
-        return dogBreed.toLowerCase().includes(search.toLowerCase());
+    //map through newBreedList and render as linked list on screen
+    //handle change should work since it is .includes e.target.value/inputValue
+    //initialize dogBreedName state to empty object
+
+    const filteredBreeds = newBreedList.filter(dogBreedObj => {
+        let fullBreedName = dogBreedObj.breed + " " + dogBreedObj.subBreed
+        return fullBreedName.toLowerCase().includes(search.toLowerCase());
     });
+
+    console.log({filteredBreeds});
 
     let dogPicByBreed = dogBreedImages.map((dogPicURL) => {
         return <DogBreedCard url={dogPicURL} />
@@ -37,21 +41,21 @@ const SubBreedsList = ( { dogBreeds } ) => {
 
     let alertBar;
 
-    let handleOnClick = (e, dogBreed) => {
+    let handleOnClick = (e, dogBreedObj) => {
         e.preventDefault();
-        setDogBreedName(dogBreed);
+        setDogBreedName(dogBreedObj);
     }
 
     let handleOnChange = (e, inputValue) => {
         e.preventDefault();
         setSearch(inputValue);
-        setDogBreedName("");
+        setDogBreedName({});
         setDogBreedImages([]);
     }
 
     useEffect(() => {
         axios
-        .get("https://dog.ceo/api/breed/" + dogBreedName + "/images/random/5")
+        .get("https://dog.ceo/api/breed/" + dogBreedName.breed + "/" + dogBreedName.subBreed + "/images/random/5")
         .then(function (response) {
             console.log("5 random dog pics by breed:", response.data.message);
             setDogBreedImages(response.data.message);
@@ -73,19 +77,19 @@ const SubBreedsList = ( { dogBreeds } ) => {
                 <h1 className="display-3">Dogs on things <span>by sub-breed</span></h1>
                 <p className="lead">Search for your favorite dog sub-breed.</p>
                 <hr className="my-2" />
-                <p>Select a dog breed below to see what they look like!</p>
+                <p>Select a dog sub-breed below to see what they look like!</p>
                 <Input type="text" placeholder="Search for a sub-breed" onChange={(e) => {handleOnChange(e, e.target.value)}}/>
                 <p className="lead">
                 </p>
             </Jumbotron>
             <div className="dog-list-container">
-                {filteredBreeds.map((dogBreed) => {
-                    return <Link onClick={(e)=> {handleOnClick(e, dogBreed)}}><List style={{padding: "0"}}>{dogBreed}</List></Link>
+                {filteredBreeds.map((dogBreedObj) => {
+                    return <Link onClick={(e)=> {handleOnClick(e, dogBreedObj)}}><List style={{padding: "0"}}>{dogBreedObj.breed} {dogBreedObj.subBreed}</List></Link>
                 })}
             { alertBar }
             </div>
             <div className="dog-images-container">
-                {dogPicByBreed}
+                { dogPicByBreed }
             </div>
         </div>
     )
