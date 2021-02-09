@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import axios from "axios";
 import { Input, Alert, List, Jumbotron } from "reactstrap";
 import DogCard from "./DogCard";
@@ -9,6 +9,9 @@ const BreedsList = ( { dogBreeds } ) => {
     const [dogBreedImages, setDogBreedImages] = useState([]);
     const [dogBreedName, setDogBreedName] = useState("");
 
+    const history = useHistory();
+    const { breed } = useParams();
+
     const dogBreedsArr = Object.keys(dogBreeds);
 
     const filteredBreeds = dogBreedsArr.filter(dogBreed => {
@@ -16,7 +19,7 @@ const BreedsList = ( { dogBreeds } ) => {
     });
 
     let dogPicByBreed = dogBreedImages.map((dogPicURL) => {
-        return <DogCard url={dogPicURL} />
+        return <DogCard key={dogPicURL} url={dogPicURL} />
     })
 
     let alertBar;
@@ -24,6 +27,7 @@ const BreedsList = ( { dogBreeds } ) => {
     let handleOnClick = (e, dogBreed) => {
         e.preventDefault();
         setDogBreedName(dogBreed);
+        history.push(`/breed/${dogBreed}`);
     }
 
     let handleOnChange = (e, inputValue) => {
@@ -37,7 +41,6 @@ const BreedsList = ( { dogBreeds } ) => {
         axios
         .get("https://dog.ceo/api/breed/" + dogBreedName + "/images/random/5")
         .then(function (response) {
-            console.log("5 random dog pics by breed:", response.data.message);
             setDogBreedImages(response.data.message);
         })
         .catch(function (error) {
@@ -64,7 +67,7 @@ const BreedsList = ( { dogBreeds } ) => {
             </Jumbotron>
             <div className="dog-list-container">
                 {filteredBreeds.map((dogBreed) => {
-                    return <Link onClick={(e)=> {handleOnClick(e, dogBreed)}}><List style={{padding: "0"}}>{dogBreed}</List></Link>
+                    return <Link key={dogBreed} onClick={(e)=> {handleOnClick(e, dogBreed)}}><List style={{padding: "0"}}>{dogBreed}</List></Link>
                 })}
             { alertBar }
             </div>

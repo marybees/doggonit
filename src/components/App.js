@@ -44,14 +44,26 @@ const App = () => {
       <div>
         <Navigation />
         <Switch>
-          <Route path="/subbreed">
+        <Route path="/subbreed">
+            <SubBreedsList dogBreeds={dogBreeds} setDogBreeds={setDogBreeds} />
+          </Route>
+          <Route path="/subbreed/:subbreed">
             <SubBreedsList dogBreeds={dogBreeds} setDogBreeds={setDogBreeds} />
           </Route>
           <Route path="/breed">
             <BreedsList dogBreeds={dogBreeds} setDogBreeds={setDogBreeds}/>
           </Route>
+          <Route path="/breed/:breed">
+            <BreedsList dogBreeds={dogBreeds} setDogBreeds={setDogBreeds}/>
+          </Route>
           <Route path="/alphabetized">
             <Alphabet dogBreeds={dogBreeds} setDogBreeds={setDogBreeds}/>
+          </Route>
+          <Route path="/alphabetized/:letter">
+            <Alphabet dogBreeds={dogBreeds} setDogBreeds={setDogBreeds}/>
+          </Route>
+          <Route path="/home">
+            <DogList dogImages={dogImages} setDogImages={setDogImages}/>
           </Route>
           <Route exact path="/">
             <DogList dogImages={dogImages} setDogImages={setDogImages}/>
