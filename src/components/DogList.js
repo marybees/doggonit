@@ -31,7 +31,7 @@ const DogList = (props) => {
           <p>Click the button below to see more.</p>
           <p className="lead">
             <Button color="primary" onClick={(e)=> {handleOnClick(e)}}>
-              More Dogs Please!
+              More dogs please!
             </Button>
           </p>
         </Jumbotron>
