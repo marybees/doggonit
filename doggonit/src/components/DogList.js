@@ -1,5 +1,6 @@
 import React from "react";
 import { Jumbotron, Button } from "reactstrap";
+import axios from "axios";
 import DogCard from "./DogCard";
 
 const DogList = (props) => {
@@ -7,6 +8,19 @@ const DogList = (props) => {
   const dogImageArray = props.dogImages.map((dogImageURL) => {
     return <DogCard url={dogImageURL} />
   })
+
+  let handleOnClick = (e) => {
+    e.preventDefault();
+    axios
+    .get("https://dog.ceo/api/breeds/image/random/20")
+    .then(function (response) {
+        console.log("20 random dog pics:", response.data.message);
+        props.setDogImages(response.data.message);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
 
   return (
       <div>
@@ -16,7 +30,7 @@ const DogList = (props) => {
           <hr className="my-2" />
           <p>Click the button below to see more to see more.</p>
           <p className="lead">
-            <Button color="primary">
+            <Button color="primary" onClick={(e)=> {handleOnClick(e)}}>
               More Dogs Please!
             </Button>
           </p>
