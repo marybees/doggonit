@@ -71,7 +71,7 @@ const Alphabet = (props) => {
             <Jumbotron>
                 <h1 className="display-3">Dog breeds on things <span>by letter</span></h1>
                 <p className="lead">View a list of dog breeds that begin with the selected letter.</p>
-                <ButtonGroup>{linkedLetterList}</ButtonGroup>
+                <ButtonGroup style={{display: "flex", flexWrap: "wrap"}}>{linkedLetterList}</ButtonGroup>
             </Jumbotron>
             <List style={{ padding: "0 3rem" }}>{dogBreedArray}</List>
             <div className="dog-images-container">
