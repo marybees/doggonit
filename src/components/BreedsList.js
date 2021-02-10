@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import axios from "axios";
-import { Input, Alert, List, Jumbotron } from "reactstrap";
+import { Input, Alert, List, Jumbotron, Spinner, ListInlineItem } from "reactstrap";
 import DogCard from "./DogCard";
 
 const BreedsList = ( { dogBreeds } ) => {
@@ -30,6 +30,10 @@ const BreedsList = ( { dogBreeds } ) => {
         history.push(`/breed/${dogBreed}`);
     }
 
+    let dogBreedListItem = filteredBreeds.map((dogBreed) => {
+        return <ListInlineItem key={dogBreed} style={{padding: "0"}}><Link onClick={(e)=> {handleOnClick(e, dogBreed)}}>{dogBreed}</Link></ListInlineItem>
+    })
+
     let handleOnChange = (e, inputValue) => {
         e.preventDefault();
         setSearch(inputValue);
@@ -54,6 +58,12 @@ const BreedsList = ( { dogBreeds } ) => {
         )
     }
 
+    if(!dogBreeds) {
+        return(
+            <Spinner color="primary" />
+        );
+    };
+
     return (
         <div>
             <Jumbotron className="jumbotron">
@@ -66,9 +76,7 @@ const BreedsList = ( { dogBreeds } ) => {
                 </p>
             </Jumbotron>
             <div className="dog-list-container">
-                {filteredBreeds.map((dogBreed) => {
-                    return <Link key={dogBreed} onClick={(e)=> {handleOnClick(e, dogBreed)}}><List style={{padding: "0"}}>{dogBreed}</List></Link>
-                })}
+            <List style={{ padding: "0" }}>{ dogBreedListItem }</List>
             { alertBar }
             </div>
             <div className="dog-images-container">

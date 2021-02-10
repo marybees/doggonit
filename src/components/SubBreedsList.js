@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import axios from "axios";
-import { Input, Alert, List, Jumbotron } from "reactstrap";
+import { Input, Alert, List, Jumbotron, Spinner, ListInlineItem } from "reactstrap";
 import DogCard from "./DogCard";
 
 const SubBreedsList = ( { dogBreeds } ) => {
@@ -43,6 +43,10 @@ const SubBreedsList = ( { dogBreeds } ) => {
         history.push(`/subbreed/${dogBreedObj.subBreed}/${dogBreedObj.breed}`);
     }
 
+    let dogBreedListItem = filteredBreeds.map((dogBreed) => {
+        return <ListInlineItem key={dogBreed} style={{padding: "0"}}><Link onClick={(e)=> {handleOnClick(e, dogBreed)}}>{dogBreed}</Link></ListInlineItem>
+    })
+
     let handleOnChange = (e, inputValue) => {
         e.preventDefault();
         setSearch(inputValue);
@@ -66,6 +70,12 @@ const SubBreedsList = ( { dogBreeds } ) => {
             <Alert color="warning"><span style ={{ fontWeight: "bold" }}>Doggonit!</span> We can't find that dog sub-breed.</Alert>
         )
     }
+
+    if(!dogBreeds) {
+        return(
+            <Spinner color="primary" />
+        );
+    };
 
     return (
         <div>
