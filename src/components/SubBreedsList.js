@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import axios from "axios";
 import { Input, Alert, List, Jumbotron, Spinner, ListInlineItem } from "reactstrap";
+import { v4 as uuidv4 } from 'uuid';
 import DogCard from "./DogCard";
 
 const SubBreedsList = ( { dogBreeds } ) => {
@@ -20,7 +21,7 @@ const SubBreedsList = ( { dogBreeds } ) => {
         let subBreeds = dogBreeds[dogBreed];
         subBreeds.forEach((subBreed) => {
             newBreedList.push({
-                // id: id,
+                id: uuidv4(),
                 breed:dogBreed,
                 subBreed:subBreed
             })
@@ -45,7 +46,7 @@ const SubBreedsList = ( { dogBreeds } ) => {
     }
 
     let dogBreedListItem = filteredBreeds.map((dogBreedObj) => {
-        return <ListInlineItem style={{padding: "0"}}><Link onClick={(e)=> {handleOnClick(e, dogBreedObj)}}>{dogBreedObj.subBreed} {dogBreedObj.breed}</Link></ListInlineItem>
+        return <ListInlineItem key={dogBreedObj.id} style={{padding: "0"}}><Link onClick={(e)=> {handleOnClick(e, dogBreedObj)}}>{dogBreedObj.subBreed} {dogBreedObj.breed}</Link></ListInlineItem>
     })
 
     let handleOnChange = (e, inputValue) => {

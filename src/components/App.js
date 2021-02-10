@@ -19,7 +19,6 @@ const App = () => {
     axios
     .get("https://dog.ceo/api/breeds/image/random/20")
     .then(function (response) {
-        console.log("20 random dog pics:", response.data.message);
         setDogImages(response.data.message);
     })
     .catch(function (error) {
@@ -31,7 +30,6 @@ const App = () => {
       axios
       .get("https://dog.ceo/api/breeds/list/all")
       .then(function (response) {
-          console.log("List of dog breeds:", response.data.message);
           setDogBreeds(response.data.message);
       })
       .catch(function (error) {
