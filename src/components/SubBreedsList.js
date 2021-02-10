@@ -20,6 +20,7 @@ const SubBreedsList = ( { dogBreeds } ) => {
         let subBreeds = dogBreeds[dogBreed];
         subBreeds.forEach((subBreed) => {
             newBreedList.push({
+                // id: id,
                 breed:dogBreed,
                 subBreed:subBreed
             })
@@ -43,8 +44,8 @@ const SubBreedsList = ( { dogBreeds } ) => {
         history.push(`/subbreed/${dogBreedObj.subBreed}/${dogBreedObj.breed}`);
     }
 
-    let dogBreedListItem = filteredBreeds.map((dogBreed) => {
-        return <ListInlineItem key={dogBreed} style={{padding: "0"}}><Link onClick={(e)=> {handleOnClick(e, dogBreed)}}>{dogBreed}</Link></ListInlineItem>
+    let dogBreedListItem = filteredBreeds.map((dogBreedObj) => {
+        return <ListInlineItem style={{padding: "0"}}><Link onClick={(e)=> {handleOnClick(e, dogBreedObj)}}>{dogBreedObj.subBreed} {dogBreedObj.breed}</Link></ListInlineItem>
     })
 
     let handleOnChange = (e, inputValue) => {
@@ -89,10 +90,8 @@ const SubBreedsList = ( { dogBreeds } ) => {
                 </p>
             </Jumbotron>
             <div className="dog-list-container">
-                {filteredBreeds.map((dogBreedObj) => {
-                    return <Link key={dogBreedObj} onClick={(e)=> {handleOnClick(e, dogBreedObj)}}><List style={{padding: "0"}}>{dogBreedObj.subBreed} {dogBreedObj.breed}</List></Link>
-                })}
-            { alertBar }
+                <List style={{ padding: "0" }}>{ dogBreedListItem }</List>
+                { alertBar }
             </div>
             <div className="dog-images-container">
                 { dogPicByBreed }
