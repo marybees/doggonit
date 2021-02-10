@@ -75,12 +75,12 @@ const BreedsList = ( { dogBreeds } ) => {
                 <p className="lead">
                 </p>
             </Jumbotron>
-            <div className="dog-list-container">
-            <List style={{ padding: "0" }}>{ dogBreedListItem }</List>
-            { alertBar }
-            </div>
             <div className="dog-images-container">
                 {dogPicByBreed}
+            </div>
+            <div className="dog-list-container">
+                <List style={{ padding: "0" }}>{ dogBreedListItem }</List>
+                { alertBar }
             </div>
         </div>
     )
