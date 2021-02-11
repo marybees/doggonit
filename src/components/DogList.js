@@ -14,7 +14,6 @@ const DogList = (props) => {
     axios
     .get("https://dog.ceo/api/breeds/image/random/20")
     .then(function (response) {
-        console.log("20 random dog pics:", response.data.message);
         props.setDogImages(response.data.message);
     })
     .catch(function (error) {

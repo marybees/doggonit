@@ -32,19 +32,22 @@ const Alphabet = (props) => {
 
     if (activeLetter) {
         breeds = breeds.filter(dogBreed => dogBreed[0].toUpperCase() === activeLetter);
-        dogBreedName = breeds[getRandomInt(breeds.length - 1)]
+        let randomInt = getRandomInt(breeds.length);
+        console.log({randomInt});
+        dogBreedName = breeds[0];
     }
 
     useEffect(() => {
         axios
         .get("https://dog.ceo/api/breed/" + dogBreedName + "/images/random/20")
         .then(function (response) {
+            console.log(response.data.message);
             setDogBreedImages(response.data.message);
         })
         .catch(function (error) {
             console.log(error);
         });
-    }, [dogBreedName]);
+    },[dogBreedName]);
 
     if(!props.dogBreeds) {
         return(

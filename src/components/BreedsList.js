@@ -76,7 +76,7 @@ const BreedsList = ( { dogBreeds } ) => {
                 </p>
             </Jumbotron>
             <div className="dog-images-container">
-                {dogPicByBreed}
+                { dogPicByBreed }
             </div>
             <div className="dog-list-container">
                 <List style={{ padding: "0" }}>{ dogBreedListItem }</List>
